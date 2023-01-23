@@ -1,0 +1,72 @@
+1. CREATE LISTING:
+
+    > Create a new listing, being able to specify a title, a description, and the starting bid. OPTIONALLY,
+      a URL for an image and/or category can be provided. 
+
+    FIX ME:
+        * As of now, URL and category are mandatory :( ---> SOLVED, though the category, if no other, should be misc
+        * A user should be able to create the category if it doesn't exist just by typing it. 
+          ---> NOT GOOD DESIGN, you could end up with millions of potentially useless categories.
+
+
+
+2. ACTIVE LISTINGS PAGE:
+
+    > Default route. View of all currently active listings.
+    > For each active listing, the page should at least display: title, description, current price, photo.
+
+    TO DO:
+        * Improve page design. 
+
+
+
+
+3. LISTING PAGE:
+
+    > Details about listing: CURRENT PRICE
+    > If signed in: - " Add to/Remove from watchlist"
+                    - " Bid ". Bid must be larger than current max bid. 
+                    - " Close auction". This determines winner, and the listing should be no longer active. 
+                    - If auction is closed, the page should say so. 
+                    - " Comment ". All comments should be displayed. 
+
+    FIX ME:
+        * Almost every aspect :'D
+        * Watchlist and bid not working properly ---> SOLVED(1)
+        * Close auction and closed auction page not implemented. (3)
+        * Unsigned user CANT see listings. ---> SOLVED(2)
+        
+    --->* Comments get re-submited on refresh!<--- 
+
+        (1)
+        * Bid working just fine! Problem was, I updated a foreign key's name without ever migrating the changes. 
+        * Add/remove watchlist also working! ALTHOUGH NOT SHOWING IN WATCHLIST PAGE
+        (2)
+        * Listing page for unlogged users ACTIVE. I retrieved log_required tag from listing and listing info,
+          arranged them so that a logged user has access to every feature, and conditionated the html
+        (3)
+        * Closed auction is taken off the active listings. If user requesting the page is the winner, the page
+          says so. Otherwise, it says bidding closed. 
+
+
+
+
+4. WATCHLIST: 
+
+    > Display all watched listings. Clicking should take to listing page.
+
+    TO DO:
+        * Implement ---> SOLVED
+
+    FIX ME:
+    * Bug with the add to watchlist button... Kinda like a false press at first, then works fine...
+
+
+
+
+5. CATEGORIES: 
+
+    > All listing categories. Clicking should take to a page that displays all of the active listings
+    
+    TO DO:
+        * Implement ---> SOLVED
